@@ -1,0 +1,33 @@
+# Mansoorali Amiri
+version: '3'
+
+services:
+  # Configuration for the 'serving' service
+  serving:
+    build: # Build configuration for 'serving'
+      context: ./ # Context directory for build
+      dockerfile: Dockerfile.serving # Dockerfile to use
+    ports:
+      - "5000:5000" # Port mapping
+    environment: # Environment variables
+      - COMET_KEY=${COMET_KEY} # API key environment variable
+    # Optional configurations (currently commented out)
+    # Uncomment to use custom arguments or a specific Docker image
+    # args:
+    #   ARG: <ARG>
+    # image: ift6758/serving:<TAG>
+
+  # Configuration for the 'jupyter' service
+  jupyter:
+    build: # Build configuration for 'jupyter'
+      context: ./ # Context directory for build
+      dockerfile: Dockerfile.jupyter # Dockerfile to use
+    ports:
+      - "3000:3000" # Port mapping
+    environment: # Environment variables
+      - COMET_KEY=${COMET_KEY} # API key environment variable
+    # Optional configurations (currently commented out)
+    # Uncomment to use custom arguments or a specific Docker image
+    # args:
+    #   ARG: <ARG>
+    # image: ift6758/jupyter:<TAG>

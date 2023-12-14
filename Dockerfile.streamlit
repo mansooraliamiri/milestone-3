@@ -1,0 +1,78 @@
+# Mnsoorali Amiri
+# To build a container, you will use the docker build command
+# https://docs.docker.com/engine/reference/commandline/build/
+#
+#   docker build -t <IMAGE TAG> -f Dockerfile.serving .
+#   docker build -t <IMAGE TAG> -f Dockerfile.jupyter .
+#
+
+
+# https://docs.docker.com/engine/reference/builder/#from
+# You shouldn't need to change this
+FROM python:3.11
+
+# https://docs.docker.com/engine/reference/builder/#workdir
+# Create and cd into /code as your working directory
+WORKDIR /code
+# Copie des fichiers nécessaires dans le conteneur
+COPY /ift6758/requirements.txt .
+COPY ./ift6758/ift6758/data/20162017.pkl ./ift6758/ift6758/data/20162017.pkl
+COPY ./ift6758/ift6758/data/20182019.pkl ./ift6758/ift6758/data/20162017.pkl
+COPY ./serving/app.py ./serving/app.py
+#Load initialization file
+COPY ./ift6758/ift6758/__init__.py ./ift6758/ift6758/__init__.py
+COPY ./ift6758/ift6758/features ./ift6758/ift6758/features
+COPY ./ift6758/ift6758/client ./ift6758/ift6758/client
+COPY ./ift6758/ift6758/models/__init__.py ./ift6758/ift6758/models/__init__.py
+COPY ./ift6758/ift6758/utils/utils.py ./ift6758/ift6758/utils/utils.py
+
+# The main docker commands you will find useful:
+# 
+# Add a file or directory
+# https://docs.docker.com/engine/reference/builder/#add
+#
+#       ADD ./<SOURCE_DIR/FILE> ./<DOCKER_DIR/FILE>
+#
+# Run a shell command (tip: chain shell commands with && rather than multiple RUN commands)
+# https://docs.docker.com/engine/reference/builder/#run
+#
+#       RUN <SHELL COMMAND>   
+#
+# Set an environment variable:
+# https://docs.docker.com/engine/reference/builder/#env
+#
+#       ENV <ENV_VAR>=<DEFAULT>
+#
+# Expose a port
+# https://docs.docker.com/engine/reference/builder/#port
+#
+#       EXPOSE <PORT>
+#
+# Provide default command for executing container
+# https://docs.docker.com/engine/reference/builder/#cmd
+#
+#       CMD <SHELL COMMAND>
+
+ 
+
+# TODO: add code, optionally a default model if you want 
+ARG COMET_KEY
+ENV COMET_KEY=$COMET_KEY
+
+# TODO: install libs
+# Installation des librairies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install python-dotenv && \
+    pip install gunicorn
+
+
+# TODO: expose ports (or do this in docker-compose)
+# Exposition du port 5000
+EXPOSE 5000
+
+# Commande par défaut pour exécuter l'application
+CMD gunicorn --bind 0.0.0.0:5000 app:app
+
+# TODO: specify default command - this is not required because you can always specify the command
+# either with the docker run command or in the docker-compose file

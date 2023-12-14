@@ -1,0 +1,38 @@
+#Mansoorali Amiri
+FROM python:3.11
+
+
+WORKDIR /code
+# add files
+# Copie des fichiers nécessaires dans le conteneur
+COPY /ift6758/requirements.txt .
+COPY ./ift6758/ift6758/data/20162017.pkl ./ift6758/ift6758/data/20162017.pkl
+COPY ./ift6758/ift6758/data/20182019.pkl ./ift6758/ift6758/data/20162017.pkl
+COPY ./serving/app.py ./serving/app.py
+#Load initialization file
+COPY ./ift6758/ift6758/__init__.py ./ift6758/ift6758/__init__.py
+COPY ./ift6758/ift6758/features ./ift6758/ift6758/features
+COPY ./ift6758/ift6758/client ./ift6758/ift6758/client
+COPY ./ift6758/ift6758/models/__init__.py ./ift6758/ift6758/models/__init__.py
+COPY ./ift6758/ift6758/utils/utils.py ./ift6758/ift6758/utils/utils.py
+
+
+# install libs
+# Installation des librairies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt && \
+    pip install python-dotenv && \
+    pip install gunicorn
+
+
+# Environment variables
+ARG COMET_KEY
+ENV COMET_KEY=$COMET_KEY
+
+
+CMD ["jupyter-lab", "--port=3000", "--no-browser",  "--ip=0.0.0.0", "--allow-root"]
+
+# expose ports
+EXPOSE 3000
+
+
