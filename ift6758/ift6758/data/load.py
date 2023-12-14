@@ -4,11 +4,9 @@ import pickle
 import sys
 import pandas as pd
 
-
-from ift6758.data import RequestNHL
-from ift6758 import utils
-from ift6758.data.models import Season
-#from src.features.jeu_puissance import get_jeu_puissance1
+from src.data import RequestNHL
+from src import utils
+from src.data.models import Season
 
 class NHLDataDownloader:
     def __init__(self, year):
@@ -46,7 +44,6 @@ class NHLDataDownloader:
           round = i + 1
           return int(f"{round}{matchup}{game}")
 
-
     def load_data(self, filename: str = "", samples: bool = False) -> object:
       """
       Load season data from file. If the file does not exists, the data is download and saved.
@@ -61,9 +58,8 @@ class NHLDataDownloader:
       """
       # Définir le chemin
       dir_data = 'data'
-
+      print('===========0')
       # Créer le dossier data
-      
       try:
         if not os.path.isdir(dir_data):
           os.mkdir(dir_data)
@@ -78,13 +74,13 @@ class NHLDataDownloader:
         default_filename = f'data/{season_fullname}-samples.pkl'
 
       season_file = filename or default_filename
-
+      print('===========1')
       if os.path.isfile(season_file):
         with open(season_file, 'rb') as file:
           data = pickle.load(file)
           print(f'Season {self.season_year} successfully loaded from file')
       else:
-
+        print('===========2')
         data = {}
 
         nb_regular_games = RequestNHL.nb_regular_games(self.season_year)
@@ -94,14 +90,26 @@ class NHLDataDownloader:
           nb_playoffs = 5
 
         print('Downloading:')
-        for id in range(1, nb_regular_games + 1):
-          game = RequestNHL.get_game(self.season_year, id)
-          self.r_games.append(game)
-          sys.stdout.write(f'\r Regulars: {id}/{nb_regular_games}')
-          sys.stdout.flush()
-        print()
+        #for id in range(1, nb_regular_games + 1):
+        #  game = RequestNHL.get_game(self.season_year, id)
+        #  self.r_games.append(game)
+        #  sys.stdout.write(f'\r Regulars: {id}/{nb_regular_games}')
+        #  sys.stdout.flush()
+        for id in nb_regular_games:
+          try:
+              game = RequestNHL.get_game(self.season_year, id, regular=True)
+              if(game != None):
+                self.r_games.append(game)
+              sys.stdout.write(f'\r Regulars: {id}')
+              sys.stdout.flush()
+          except Exception as e:
+              # Handle the exception here, you can print an error message or log the error.
+              print(f" :: Error occurred for game ID {id}: {str(e)}\n")
+  
+        print(' :: Finir le téléchargement.\n')
+        
 
-        for id in range(1, nb_playoffs + 1):
+        '''for id in range(1, nb_playoffs + 1):
           code = self.playoff_code(id)
           game = RequestNHL.get_game(self.season_year, code, regular=False)
 
@@ -115,7 +123,9 @@ class NHLDataDownloader:
         print()
 
         data = {"regulars":self.r_games, "playoffs":self.p_games}
-
+        '''
+        
+        data = {"regulars":self.r_games, "playoffs":self.p_games}
         # Save season data to file
         with open(season_file, 'wb') as file:
           pickle.dump(data, file)
@@ -134,9 +144,14 @@ class NHLDataDownloader:
 
           samples (bool): if true, only a small portion of the data is downloaded, default false.
       """
+      print('filename: ',filename)
+      print('samples: ',samples)
       data = self.load_data(filename, samples)
       print('Processing data... (1-2 minutes)')
+      #print('==== Season.model_validate: ',data)
       season = Season.model_validate(data)
+      #season = data
+      print('season::: ',season)
       print('Done!')
       return season
 
@@ -155,12 +170,12 @@ class NHLDataDownloader:
       version = 0.1
 
       filename = filename or f'data/shots_{self.season_year}-{version}.pkl'
-
+      print('log1')
       if not season:
-        #if os.path.isfile(filename):
-          #return pd.read_pickle(filename)
+        if os.path.isfile(filename):
+          return pd.read_pickle(filename)
         season = self.load_processed_data()
-
+      print('log2')
       columns = ['Game_id',
               'Period',
               'Time',
@@ -173,39 +188,15 @@ class NHLDataDownloader:
               'Type',
               'Empty_net',
               'Strength']
-      
+      print('log3')
       data = []
 
       print("Creating Dataframe...")
       
       for game_id, game in enumerate(season.regulars):
-        all_penalties = []
-        all_penalties_details = []
-        #for play_penalty in game.penalty_plays:
-        #  #print('play_master ',play_penalty)
-        #  all_penalties.append(play_penalty)
-        penalty_plays = game.penalty_plays
-        for play in penalty_plays:
-           penalty_team = game.plays[play].team.triCode
-           penalty_time = game.plays[play].about.periodTime
-           penalty_period = game.plays[play].about.period
-           penalty_description = game.plays[play].result.description
-           penalty_details = {
-                'penalty_period':penalty_period,
-                'penalty_team':penalty_team,
-                'penalty_time':penalty_time,
-                'penalty_description':penalty_description
-              }
-           all_penalties_details.append(penalty_details) 
-        #print('all_penalties_details ',all_penalties_details)
-        #home = season_data['regulars'][0]['gameData']['teams']['home']['triCode']
-        
-        get_jeu_puissance(all_penalties_details,game.home_team.triCode)
-
         for play in game.plays:
-                                  
           if play.coordinates and (play.result.event == 'Goal' or play.result.event == 'Shot'):
-            
+
             tireur = ""
             gardien = ""
             for player_event in play.players:
@@ -225,7 +216,7 @@ class NHLDataDownloader:
             empty_net = play.result.emptyNet
             strength = play.result.strength
             data.append([id, periode, time, equipe, but, x, y, tireur, gardien, shot_type, empty_net, strength])
-          #print('all_penalties: ',all_penalties)
+            
       df = pd.DataFrame(data, columns=columns)
 
       # Get the opponant net position
@@ -242,20 +233,6 @@ class NHLDataDownloader:
       df = df.infer_objects()
 
       df.to_pickle(filename)
-      
-      # Ajouter le caractéristique de jeu de puissance au DataFrame retourner par load_df_shots
-      # Question 4.4 
-      # Milstone 2
-      # Afficher les caractéristiques
-      
-      #d = get_jeu_puissance(season)
-      #print('========================== ',df)
-      #print(d['time_elapsed_power_play'])
-      #print(d['friendly_skaters_on_ice'])
-      #print(d['opposing_skaters_on_ice'])
-      #df['power_play'] = d['time_elapsed_power_play']
-      #df['friendly_skaters'] = d['friendly_skaters_on_ice']
-      #df['opposing_skaters'] = d['opposing_skaters_on_ice']
 
       print("Done!")
 
@@ -296,25 +273,21 @@ def play_penalty(season_data):
   #print(all_penalties)
   return all_penalties
 
-
-
-def get_jeu_puissance(all_penalties:list,all_home:list)->list:
-    #all_penalties = detail_penality(season_data)
+# Calculer des variables question 4.4
+def get_jeu_puissance(season_data,all_penalties)->list:
     power_play_active = False  # Indique si un power-play est actif
     power_play_start_time = 0  # Temps de début du power-play en secondes
     friendly_skaters_on_ice = 5  # Nombre de patineurs non-gardiens amicaux sur la glace
     opposing_skaters_on_ice = 5  # Nombre de patineurs non-gardiens adverses sur la glace
-    #home = season_data['regulars'][0]['gameData']['teams']['home']['triCode']
-    home = all_home
+    home = season_data['regulars'][0]['gameData']['teams']['home']['triCode']
     #print(home)
-    #away = season_data['regulars'][0]['gameData']['teams']['away']['triCode']
+    away = season_data['regulars'][0]['gameData']['teams']['away']['triCode']
     #print(away)
     # Parcourir toutes les pénalités
     for penalty in all_penalties:
         penalty_team = penalty['penalty_team']
-        penalty_timing = penalty['penalty_time']
-        
-        penalty_time = (penalty_timing.hour * 3600) + (penalty_timing.minute * 60) + penalty_timing.second
+        penalty_time = penalty['penalty_time']
+
         # Vérifier si une nouvelle pénalité a commencé
         if not power_play_active:
             power_play_active = True
@@ -332,19 +305,11 @@ def get_jeu_puissance(all_penalties:list,all_home:list)->list:
                     friendly_skaters_on_ice += 1
                 else:
                     opposing_skaters_on_ice += 1
-
-    
-    result = {
+    return {
             'time_elapsed_power_play': power_play_start_time,
             'friendly_skaters_on_ice': friendly_skaters_on_ice,
             'opposing_skaters_on_ice': opposing_skaters_on_ice
         }
-    print('find result ',result)
-    return result
-# Afficher les caractéristiques
-#d = get_jeu_puissance(all_penalties)
-#print(d['time_elapsed_power_play'])
-#print(d['friendly_skaters_on_ice'])
-#print(d['opposing_skaters_on_ice'])
+
 
 
