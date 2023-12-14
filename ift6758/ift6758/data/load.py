@@ -311,6 +311,9 @@ def get_jeu_puissance(season_data,all_penalties)->list:
             'opposing_skaters_on_ice': opposing_skaters_on_ice
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/main
 
 
