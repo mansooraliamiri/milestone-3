@@ -313,3 +313,4 @@ def get_jeu_puissance(season_data,all_penalties)->list:
 
 
 
+
