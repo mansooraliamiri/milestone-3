@@ -1,9 +1,11 @@
 import requests
 from src import utils
 
+
 class RequestNHL():
     nb_games = {30: 1230, 31:1271, 32:1353}
     #base_url = "https://statsapi.web.nhl.com/api/v1/"
+
     base_url = "https://api-web.nhle.com/v1/"
     # get_game: https://statsapi.web.nhl.com/api/v1/  game/  {$season} -> https://api-web.nhle.com/v1/skater-stats-leaders/20222023/3
     # get_game: https://api-web.nhle.com/v1/player/8478402/game-log/20232024/2
