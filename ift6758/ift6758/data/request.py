@@ -2,6 +2,7 @@ import requests
 from src import utils
 
 
+
 class RequestNHL():
     nb_games = {30: 1230, 31:1271, 32:1353}
     #base_url = "https://statsapi.web.nhl.com/api/v1/"
