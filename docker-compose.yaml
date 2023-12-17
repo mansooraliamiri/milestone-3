@@ -10,7 +10,7 @@ services:
     build:
       container_name: nhl-service
       context: .
-      dockerfile: DockerFile.serving
+      dockerfile: Dockerfile.serving
       args:
         - COMET_API_KEY=${COMET_KEY}
     ports:
@@ -24,7 +24,7 @@ services:
     image: nhl-streamlit:latest
     build:
       context: .
-      dockerfile: DockerFile.streamlit
+      dockerfile: Dockerfile.streamlit
       args:
         - COMET_API_KEY=${COMET_KEY}
     ports:
