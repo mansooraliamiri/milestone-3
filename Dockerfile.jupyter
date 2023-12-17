@@ -27,10 +27,10 @@ RUN pip install --upgrade pip && \
 
 # Environment variables
 ARG COMET_KEY
-ENV COMET_KEY=$COMET_KEY
+ENV COMET_KEY=$COMET_API_KEY
 
 
-CMD ["jupyter-lab", "--port=3000", "--no-browser",  "--ip=0.0.0.0", "--allow-root"]
+CMD ["--port=3000", "--no-browser",  "--ip=0.0.0.0", "--allow-root"]
 
 # expose ports
 EXPOSE 3000
