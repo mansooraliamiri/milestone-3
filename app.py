@@ -70,5 +70,5 @@ def predict():
     return jsonify(model_handler.predict(data))
 
 if __name__ == '__main__':
-    model_handler.load_model('6-LGBM.pkl')  # Load default model on startup
+    model_handler.load_model('20162017.pkl')  # Load default model on startup
     app.run(port=5000)

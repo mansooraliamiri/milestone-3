@@ -1,13 +1,4 @@
-"""
-If you are in the same directory as this file (app.py), you can run run the app using gunicorn:
-    
-    $ gunicorn --bind 0.0.0.0:<PORT> app:app
-
-gunicorn can be installed via:
-
-    $ pip install gunicorn
-
-"""
+#Mansoorali Amiri
 import os
 from pathlib import Path
 import logging
