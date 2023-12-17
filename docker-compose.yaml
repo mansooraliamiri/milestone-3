@@ -25,7 +25,7 @@ services:
       context: ./ # Context directory for build
       dockerfile: Dockerfile.jupyter # Dockerfile to use
     ports:
-      - "3000:3000" # Port mapping
+      - "5000:5000" # Port mapping
     environment: # Environment variables
       - COMET_KEY=${COMET_API_KEY} # API key environment variable
     # Optional configurations (currently commented out)
@@ -33,3 +33,4 @@ services:
     # args:
     #   ARG: <ARG>
     # image: ift6758/jupyter:<TAG>
+
