@@ -4,13 +4,15 @@ version: '3'
 services:
   # Configuration for the 'serving' service
   serving:
+    container_name: NHL_serving
     build: # Build configuration for 'serving'
       context: ./ # Context directory for build
       dockerfile: Dockerfile.serving # Dockerfile to use
+
     ports:
       - "5000:5000" # Port mapping
     environment: # Environment variables
-      - COMET_KEY=${COMET_KEY} # API key environment variable
+      - COMET_KEY=${COMET_API_KEY} # API key environment variable
     # Optional configurations (currently commented out)
     # Uncomment to use custom arguments or a specific Docker image
     # args:
@@ -25,7 +27,7 @@ services:
     ports:
       - "3000:3000" # Port mapping
     environment: # Environment variables
-      - COMET_KEY=${COMET_KEY} # API key environment variable
+      - COMET_KEY=${COMET_API_KEY} # API key environment variable
     # Optional configurations (currently commented out)
     # Uncomment to use custom arguments or a specific Docker image
     # args:
