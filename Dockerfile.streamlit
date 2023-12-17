@@ -26,34 +26,6 @@ COPY ./ift6758/ift6758/client ./ift6758/ift6758/client
 COPY ./ift6758/ift6758/models/__init__.py ./ift6758/ift6758/models/__init__.py
 COPY ./ift6758/ift6758/utils/utils.py ./ift6758/ift6758/utils/utils.py
 
-# The main docker commands you will find useful:
-# 
-# Add a file or directory
-# https://docs.docker.com/engine/reference/builder/#add
-#
-#       ADD ./<SOURCE_DIR/FILE> ./<DOCKER_DIR/FILE>
-#
-# Run a shell command (tip: chain shell commands with && rather than multiple RUN commands)
-# https://docs.docker.com/engine/reference/builder/#run
-#
-#       RUN <SHELL COMMAND>   
-#
-# Set an environment variable:
-# https://docs.docker.com/engine/reference/builder/#env
-#
-#       ENV <ENV_VAR>=<DEFAULT>
-#
-# Expose a port
-# https://docs.docker.com/engine/reference/builder/#port
-#
-#       EXPOSE <PORT>
-#
-# Provide default command for executing container
-# https://docs.docker.com/engine/reference/builder/#cmd
-#
-#       CMD <SHELL COMMAND>
-
- 
 
 # TODO: add code, optionally a default model if you want 
 ARG COMET_KEY
@@ -69,10 +41,5 @@ RUN pip install --upgrade pip && \
 
 # TODO: expose ports (or do this in docker-compose)
 # Exposition du port 5000
-EXPOSE 5000
-
-# Commande par défaut pour exécuter l'application
-CMD gunicorn --bind 0.0.0.0:5000 app:app
-
-# TODO: specify default command - this is not required because you can always specify the command
-# either with the docker run command or in the docker-compose file
+EXPOSE 8501
+CMD [ "streamlit", "run" , "streamlit_app.py", "--server.headless", "true", "--server.address=0.0.0.0" , "--server.port=8501" ]

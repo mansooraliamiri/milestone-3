@@ -1,5 +1,7 @@
 import requests
-from src import utils
+import utils
+#from src import utils
+
 
 
 

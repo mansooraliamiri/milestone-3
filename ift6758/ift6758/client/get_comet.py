@@ -4,7 +4,7 @@ import comet_ml
 
 def get_comet_model(model_name, model_path, download=1, workspace="morph-e", model_version=None):
     # Read the COMET_API_KEY from the system environment
-    comet_api_key = os.getenv('COMET_KEY')
+    comet_api_key = os.getenv('COMET_API_KEY')
     if not comet_api_key:
         raise ValueError("COMET_API_KEY is not set in the environment")
 

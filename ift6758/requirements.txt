@@ -18,3 +18,7 @@ streamlit
 python-dotenv
 waitress
 pydantic
+xgboost
+shap
+
+

@@ -44,10 +44,8 @@ RUN pip install --upgrade pip && \
     pip install gunicorn
 
 # TODO: expose ports (or do this in docker-compose)
-# Exposition du port 5000
-EXPOSE 5000
-
-# Commande par défaut pour exécuter l'application
-CMD gunicorn --bind 0.0.0.0:5000 app:app
+# Exposition du port 8080
+EXPOSE 8080
+CMD ["gunicorn"  , "--bind", "0.0.0.0:8080", "app:app"]   
 
 

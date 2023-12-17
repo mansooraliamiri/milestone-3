@@ -3,10 +3,13 @@ import os
 import pickle
 import sys
 import pandas as pd
+from data import RequestNHL
+#from src.data import RequestNHL
+import utils
+#from src import utils
+from data.models import Season
+#from src.data.models import Season
 
-from src.data import RequestNHL
-from src import utils
-from src.data.models import Season
 
 class NHLDataDownloader:
     def __init__(self, year):
