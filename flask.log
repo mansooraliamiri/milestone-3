@@ -1,0 +1,48 @@
+INFO:serving.app_test:No local files 6-LGBM.pkl found. Downloading it from Comet.
+ERROR:serving.app_test:Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/milestone-3/serving/app_test.py", line 47, in before_first_request
+    API(api_key=os.getenv('COMET_API_KEY')).download_registry_model(**request, output_path=LOADED_MODELS_DIR)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/comet_ml/api.py", line 2845, in __init__
+    self._client = get_rest_api_client(
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/comet_ml/connection.py", line 1914, in get_rest_api_client
+    raise ValueError("get_rest_api_client requires an api_key")
+ValueError: get_rest_api_client requires an api_key
+INFO:serving.app_test:No local files 6-LGBM.pkl found. Downloading it from Comet.
+ERROR:serving.app_test:Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/milestone-3/serving/app_test.py", line 47, in before_first_request
+    API(api_key=os.getenv('COMET_API_KEY')).download_registry_model(**request, output_path=LOADED_MODELS_DIR)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/comet_ml/api.py", line 2845, in __init__
+    self._client = get_rest_api_client(
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/home/shabgard/ift6758/project/Milestone3/env/lib/python3.11/site-packages/comet_ml/connection.py", line 1914, in get_rest_api_client
+    raise ValueError("get_rest_api_client requires an api_key")
+ValueError: get_rest_api_client requires an api_key

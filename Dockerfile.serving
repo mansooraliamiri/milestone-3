@@ -1,17 +1,5 @@
 # Mansoorali Amiri
-# To build a container, you will use the docker build command
-# https://docs.docker.com/engine/reference/commandline/build/
-#
-#   docker build -t <IMAGE TAG> -f Dockerfile.serving .
-#   docker build -t <IMAGE TAG> -f Dockerfile.jupyter .
-#
-# Les commandes pour construire le conteneur (commentaires informatifs)
-# docker build -t <IMAGE TAG> -f Dockerfile.serving .
-# docker build -t <IMAGE TAG> -f Dockerfile.jupyter .
 
-
-# https://docs.docker.com/engine/reference/builder/#from
-# You shouldn't need to change this
 FROM python:3.11
  
 # https://docs.docker.com/engine/reference/builder/#workdir
