@@ -20,6 +20,7 @@ COPY ./ift6758/ift6758/data/20162017.pkl ./ift6758/ift6758/data/20162017.pkl
 COPY ./ift6758/ift6758/data/20182019.pkl ./ift6758/ift6758/data/20162017.pkl
 COPY ./serving/app.py ./serving/app.py
 COPY ./streamlit_app.py ./streamlit_app.py
+COPY ./streamlit_app_master.py ./streamlit_app_master.py
 #Load initialization file
 COPY ./ift6758/ift6758/__init__.py ./ift6758/ift6758/__init__.py
 COPY ./ift6758/ift6758/features ./ift6758/ift6758/features
@@ -44,3 +45,4 @@ RUN pip install --upgrade pip && \
 # Exposition du port 5000
 EXPOSE 8501
 CMD [ "streamlit", "run" , "streamlit_app.py", "--server.address=0.0.0.0" , "--server.port=8501" ]
+#CMD [ "streamlit", "run" , "streamlit_app_master.py", "--server.address=0.0.0.0" , "--server.port=8501" ]
