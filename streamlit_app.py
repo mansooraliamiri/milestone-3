@@ -6,9 +6,9 @@ st.title("Hockey Visualization App")
 
 with st.sidebar:
     # Adding input for the sidebar
-    workspace = st.selectbox('Workspace', ['Workspace x', 'Workspace y', 'Workspace z'])
-    model = st.selectbox('Model', ['Model x', 'Model y', 'Model z'])
-    version = st.selectbox('Version', ['Version x', 'Version y', 'Version z'])
+    workspace = st.selectbox('Workspace', ['Workspace 1', 'Workspace 2', 'Workspace 3'])
+    model = st.selectbox('Model', ['Model 1', 'Model 2', 'Model 3'])
+    version = st.selectbox('Version', ['Version 1', 'Version 2', 'Version 3'])
     st.button('Get model')
 
 with st.container():

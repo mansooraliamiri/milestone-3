@@ -5,4 +5,4 @@ echo "Run docker file"
 #docker run --env-file .env --publish 5000:5000  ift6758
 #docker run -it -p 127.0.0.1:5000:5000/tcp --env COMET_KEY=$COMET_KEY image_docker_personnalisee:$1
 #gunicorn  --bind 0.0.0.0:8080 app:app
-gunicorn  --bind 0.0.0.0:8080 app:app
+docker run -p 8501:8501 ift6758

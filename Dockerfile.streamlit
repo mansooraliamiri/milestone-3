@@ -19,6 +19,7 @@ COPY /ift6758/requirements.txt .
 COPY ./ift6758/ift6758/data/20162017.pkl ./ift6758/ift6758/data/20162017.pkl
 COPY ./ift6758/ift6758/data/20182019.pkl ./ift6758/ift6758/data/20162017.pkl
 COPY ./serving/app.py ./serving/app.py
+COPY ./streamlit_app.py ./streamlit_app.py
 #Load initialization file
 COPY ./ift6758/ift6758/__init__.py ./ift6758/ift6758/__init__.py
 COPY ./ift6758/ift6758/features ./ift6758/ift6758/features
