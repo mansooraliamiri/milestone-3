@@ -1,5 +1,5 @@
 # milestone-3
-# 🏒 IFT-6758 Project
+# 🏒 IFT-6758 Project * NHL
 [Repo URL](https://github.com/mansooraliamiri/milestone-3.git)
 
 
