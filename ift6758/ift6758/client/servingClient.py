@@ -73,4 +73,5 @@ class ServingClient:
         response = requests.post(f"{self.base_url}/download_registry_model",
                                  json={'workspace': workspace, 'model': model, 'version': version})
         return response.json()
+    
 
