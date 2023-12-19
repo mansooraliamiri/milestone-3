@@ -3,7 +3,7 @@
 [Repo URL](https://github.com/mansooraliamiri/milestone-3.git)
 
 
-## Note: This project is a copy of the original project of the 4-member team, which I voted on alone from milestone 3. I rewrote some parts, added some parts. For a better understanding, I have taken examples of the following project codes for better understanding. This announcement is for the purpose of complying with the laws of intellectual property protection.
+## Note: This project is a spinoff from the original 4-person team project, lesson ift6758, which I am working on alone from Milestone 3. I rewrote some parts and added some parts to it. For better understanding, I have given below project code examples for better understanding. This announcement is to comply with the laws of protection of intellectual property.
 
 Sources usagé:
 
