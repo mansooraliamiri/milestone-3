@@ -4,7 +4,7 @@ import sys
 import json
 import pandas as pd
 import streamlit as st
-from ift6758.client import ServingClient, GameClient
+from ift6758.ift6758.client import ServingClient, GameClient
 
 # Définition du répertoire courant et ajout au PATH
 def setup_directory():
