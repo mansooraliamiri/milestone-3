@@ -67,6 +67,7 @@ def download_registry_model():
         }
     
     """
+    print("log : app.py")
     # Get POST json data
     json = request.get_json()
     app.logger.info(json)

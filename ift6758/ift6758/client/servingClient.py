@@ -68,7 +68,7 @@ class ServingClient:
         response = requests.get(f"{self.base_url}/logs")
         return response.json()
 
-    def download_model(self, workspace, model, version):
+    def download_registry_model(self, workspace, model, version):
         logger.info(f"Downloading model {model} version {version}")
         response = requests.post(f"{self.base_url}/download_registry_model",
                                  json={'workspace': workspace, 'model': model, 'version': version})

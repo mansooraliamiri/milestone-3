@@ -23,7 +23,7 @@ parent_dir = os.path.dirname(current_dir)
 
 #setup_import_paths()
 
-from featureLists import *
+#from client.featureLists import *
 
 chemin_dossier_parent = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
