@@ -3,8 +3,8 @@ import os
 import pickle
 import sys
 import pandas as pd
-from data import RequestNHL
-#from src.data import RequestNHL
+from data.request import RequestNHL
+
 import utils
 #from src import utils
 from data.models import Season
