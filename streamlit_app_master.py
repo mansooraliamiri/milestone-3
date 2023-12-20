@@ -4,7 +4,8 @@ import sys
 import json
 import pandas as pd
 import streamlit as st
-from ift6758.ift6758.client import ServingClient, GameClient
+from ift6758.ift6758.client.servingClient import ServingClient
+from ift6758.ift6758.client.gameClient import GameClient
 
 # Définition du répertoire courant et ajout au PATH
 def setup_directory():
@@ -23,8 +24,12 @@ class HockeyApp:
         st.title("Hockey Visualization App")
 
     def download_model(self):
-        workspace = st.sidebar.text_input('Workspace', 'Workspace x')
-        model = st.sidebar.text_input('Model', 'Model y')
+        #workspace = st.selectbox('Workspace', ['Workspace x', 'Workspace y', 'Workspace z'])
+        #model = st.selectbox('Model', ['Model x', 'Model y', 'Model z'])
+        #version = st.selectbox('Version', ['Version x', 'Version y', 'Version z'])
+
+        workspace = st.sidebar.selectbox('Version', ['Version x', 'Version y', 'Version z'])
+        model = st.sidebar.selectbox('Model', ['Model x', 'Model y', 'Model z'])
         version = st.sidebar.text_input('Version', 'Version z')
         if st.sidebar.button('Get Model'):
             self.sc.download_registry_model(workspace, model, version)

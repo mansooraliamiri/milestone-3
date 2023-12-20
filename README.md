@@ -13,6 +13,15 @@ Sources usagé:
 
 [Repo URL](https://github.com/nrjkumar/IFT6758/tree/master)
 
+####################################
+
+Guide d'exécution du logiciel :
+Tout d’abord, installez complètement Docker [Repo URL](https://docs.docker.com/engine/install/) . Ensuite, démarrez le script Docker à l'aide du fichier de construction 
+(sudo ./build.sh).
+
+Après cela, l'application commencera à s'exécuter en utilisant (./run.sh). Accédez au lien pour y accéder sur le navigateur Web.
+![Alt text](images/run.png)
+
 
 
 

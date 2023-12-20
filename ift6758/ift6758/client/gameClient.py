@@ -33,7 +33,7 @@ from data.load import NHLDataDownloader
 
 class GameClient:
     def setup_game( game_id):
-        season_year = 2018
+        season_year = 2016
         nhl_downloader = NHLDataDownloader(season_year)
         season_data = nhl_downloader.load_data()
         
@@ -41,8 +41,8 @@ class GameClient:
         return game_id
 
 # Exécution principale
-#if __name__ == "__main__":
-#    test = GameClient.setup_game('2016')
-#    print(test)
+if __name__ == "__main__":
+    test = GameClient.setup_game('2016')
+    print(test)
 
 
