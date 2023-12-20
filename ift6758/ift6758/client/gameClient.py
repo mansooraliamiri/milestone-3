@@ -25,16 +25,16 @@ parent_dir = os.path.dirname(current_dir)
 
 #from client.featureLists import *
 
-chemin_dossier_parent = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#chemin_dossier_parent = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-sys.path.append(chemin_dossier_parent)
-from data.load import NHLDataDownloader 
-
+#sys.path.append(chemin_dossier_parent)
+#from data.load import NHLDataDownloader 
+from data import load 
 
 class GameClient:
     def setup_game( game_id):
         season_year = 2016
-        nhl_downloader = NHLDataDownloader(season_year)
+        nhl_downloader = load.NHLDataDownloader(season_year)
         season_data = nhl_downloader.load_data()
         
         game_id =  nhl_downloader.load_df_shots(game_id)
