@@ -24,6 +24,12 @@ Tout d’abord, installez complètement Docker [guide installation](https://docs
 Après cela, l'application commencera à s'exécuter en utilisant (./run.sh). Accédez au lien pour y accéder sur le navigateur Web.
 ![Alt text](images/run.png)
 
+En entrant le code du jeu et en appuyant sur le bouton ci-dessous, les détails du jeu seront recherchés
+![Alt text](images/game_id.png)
+
+Enfin, les spécifications du jeu s'affichent.
+![Alt text](images/datagrid.png)
+
 
 
 
