@@ -7,16 +7,16 @@
 
 Sources usagé:
 
-[Repo URL](https://github.com/AxelBogos/NHL-Analytics)
+[Resource URL 1](https://github.com/AxelBogos/NHL-Analytics)
 
-[Repo URL](https://github.com/M0rph3e/ift6758-project-main)
+[Resource URL 2](https://github.com/M0rph3e/ift6758-project-main)
 
-[Repo URL](https://github.com/nrjkumar/IFT6758/tree/master)
+[Resource URL 3](https://github.com/nrjkumar/IFT6758/tree/master)
 
 ####################################
 
 Guide d'exécution du logiciel :
-Tout d’abord, installez complètement Docker [Repo URL](https://docs.docker.com/engine/install/) . Ensuite, démarrez le script Docker à l'aide du fichier de construction .cela peut prendre quelques minutes.
+Tout d’abord, installez complètement Docker [guide installation](https://docs.docker.com/engine/install/) . Ensuite, démarrez le script Docker à l'aide du fichier de construction .cela peut prendre quelques minutes.
 
 (sudo ./build.sh).
 ![Alt text](images/build.png)
