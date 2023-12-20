@@ -17,6 +17,7 @@ Sources usagé:
 
 Guide d'exécution du logiciel :
 Tout d’abord, installez complètement Docker [Repo URL](https://docs.docker.com/engine/install/) . Ensuite, démarrez le script Docker à l'aide du fichier de construction .cela peut prendre quelques minutes.
+
 (sudo ./build.sh).
 ![Alt text](images/build.png)
 
