@@ -48,6 +48,7 @@ class RequestNHL():
                 season you'd put in 2016
             if (int): The id of the game to retrive
         """
+        print('get_game======')
         #https://api-web.nhle.com/v1/player/8478402/game-log/20232024/2
         season = str(season)
         game_id = f"{id:04d}"
@@ -59,13 +60,14 @@ class RequestNHL():
         #url += season
         # if regular game we add to the url 02 and if it is playoff we add 03
         #url += '/2' if regular else '/3'
-        #print('game link ======== ', url)
+        print('game link ======== ', url)
         try:
             
             data = requests.get(url).json()
+            
             #response.raise_for_status()  # Raises an HTTPError if the response status code is not in the 2xx range
             # Process the response content here
-            #print(response.text)
+            #print('data----- ',data)
             return data
         except requests.exceptions.HTTPError as http_error:
             print(f" :: HTTP error occurred: {http_error}\n")

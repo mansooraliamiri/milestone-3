@@ -30,27 +30,29 @@ class HockeyApp:
         #version = st.selectbox('Version', ['Version x', 'Version y', 'Version z'])
 
         workspace = st.sidebar.selectbox('Version', ['Version x', 'Version y', 'Version z'])
-        model = st.sidebar.selectbox('Model', ['Model x', 'Model y', 'Model z'])
+        model = st.sidebar.selectbox('Modèle', ['Modèle x', 'Modèle y', 'Modèle z'])
         version = st.sidebar.text_input('Version', 'Version z')
-        if st.sidebar.button('Get Model'):
+        if st.sidebar.button('Obtenir le modèle'):
             self.sc.download_registry_model(workspace, model, version)
-            st.sidebar.write('Model Downloaded')
+            st.sidebar.write('Modèle téléchargé')
 
     def game_interaction(self):
         game_id = st.container().text_input('Game ID', '2021020329')
         if st.container().button('Ping game'):
-            self.process_game_id(game_id)
+            with st.spinner('Chargement des données...'):
+                self.process_game_id(game_id)
+                st.success('Données chargées !')
+            
 
     def process_game_id(self, game_id):
         print(game_id)
         print('**********')
-
         with st.container():
             
             try:
                 json_data = GameClient.setup_game(game_id)
-                print('LOADING DATA')
-                st.subheader("Data used for predictions (and predictions)")
+                print('CHARGEMENT DES DONNÉES')
+                st.subheader("Données utilisées pour les prédictions (et prédictions)")
                 # Accéder à une caractéristique spécifique
                 game_id = json_data['id']
                 game_date = json_data['gameDate']
@@ -59,19 +61,6 @@ class HockeyApp:
                 print("Game ID:", game_id)
                 print("Game Date:", game_date)
                 print("Venue:", venue)
-
-                # Accéder aux événements
-                #if 'plays' in json_data:
-                #    for event in json_data['plays']:
-                #        event_id = event.get('eventId', None)
-                #        period = event.get('period', None)
-                #        event_type = event.get('typeDescKey', None)
-                #        details = event.get('details', {})
-                #data = np.random.rand(6, 8)  # Placeholder for the actual data
-                #df = pd.DataFrame(data, columns=[f'feature {i}' for i in range(8)])
-                #df['Event'] = [f'Event {i}' for i in range(6)]
-                #df = df.set_index('Event')
-                #st.dataframe(df)
                         
                 events = json_data.get('plays', [])
 

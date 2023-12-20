@@ -315,5 +315,31 @@ def get_jeu_puissance(season_data,all_penalties)->list:
         }
 
 
+def load_game(self, id: int = 2021020329) -> object:
+      
+      # Définir le chemin
+      dir_data = 'data'
+      print('===========0')
+      # Créer le dossier data
+      
+     
+      print('Downloading:')
 
+      try:
+              game = RequestNHL.get_game(2016, id, regular=True)
+              #print('------- ',game)
+              #print('------- ')
+              #if(game != None):
+              #  self.r_games.append(game)
+              #sys.stdout.write(f'\r Regulars: {id}')
+              #sys.stdout.flush()
+      except Exception as e:
+              # Handle the exception here, you can print an error message or log the error.
+              print(f" :: Error occurred for game ID {id}: {str(e)}\n")
+  
+      print(' :: Finir le téléchargement.\n')
+  
+     
+
+      return game
 
