@@ -51,7 +51,7 @@ class ServingClient:
         self.base_url = f"http://{ip}:{port}"
         self.features = features or ["distance"]
         self.data_loader = DataLoader()
-        logger.info(f"Client initialized with base URL: {self.base_url}")
+        logger.info(f"Initialized with URL: {self.base_url}")
 
     def predict(self, X):
         try:
@@ -72,6 +72,8 @@ class ServingClient:
         logger.info(f"Downloading model {model} version {version}")
         response = requests.post(f"{self.base_url}/download_registry_model",
                                  json={'workspace': workspace, 'model': model, 'version': version})
+        print('download_registry_model: ', response)
+        #return response
         return response.json()
     
 

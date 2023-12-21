@@ -11,5 +11,5 @@ instead of only:
 but both are still valid. You can read more about packages and modules here:
 https://docs.python.org/3/reference/import.html#regular-packages
 """
-from .request import RequestNHL
-from .load import NHLDataDownloader
+from . import load
+from . import request
